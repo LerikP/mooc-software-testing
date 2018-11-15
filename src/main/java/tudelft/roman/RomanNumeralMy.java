@@ -19,11 +19,20 @@ public class RomanNumeralMy {
     public int convert(String romanNumber) {
         Integer previous = 0;
         int result = 0;
+        boolean subtractUsed = false;
         String reversed = new StringBuffer(romanNumber).reverse().toString();
         for (char c : reversed.toCharArray()) {
             if (!map.containsKey(c)) return -1;
             Integer current = map.get(c);
-            result += current >= previous ? current : -current;
+            if (current > previous) {
+                result += current;
+                subtractUsed = false;
+            } else {
+                if (subtractUsed) return -1;
+                if (current.equals(previous)) result += current;
+                else result -= current;
+                subtractUsed = true;
+            }
             previous = current;
         }
         return result;

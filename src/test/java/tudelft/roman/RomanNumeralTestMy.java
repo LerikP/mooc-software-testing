@@ -45,4 +45,9 @@ public class RomanNumeralTestMy {
     public void numberWithUnknownSymbolInsideTest() {
         test("MDCL0XVI", -1);
     }
+
+    @Test
+    public void numberWithDoubleSubtractionTest() {
+        test("XXC", -1);
+    }
 }
